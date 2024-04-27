@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "589383501932",
+    "project_id": "promax1318",
+    "storage_bucket": "promax1318.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:589383501932:android:e7c4a352085bdd8aca3049",
+        "android_client_info": {
+          "package_name": "com.example.project2"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA9fYrs40uLz65PfU-MtZIBksnLMsqVbgk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
