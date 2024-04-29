@@ -13,12 +13,11 @@ class Register extends StatelessWidget {
 
    @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
+    return Scaffold(backgroundColor: Colors.white,   appBar: AppBar(
         backgroundColor: Colors.teal,
         centerTitle: true,
         title: Text('REGISTER',
-          style: TextStyle(color: Colors.purple),),
+          style: TextStyle(color: Colors.white),),
       ),
       body: Center(
         child: Column(
