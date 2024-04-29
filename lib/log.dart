@@ -1,8 +1,11 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:project2/prof.dart';
 
 class Log extends StatelessWidget {
-  const Log({super.key});
+   Log({super.key});
+    final username=TextEditingController();
+    final password=TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +21,8 @@ class Log extends StatelessWidget {
           children: [
             SizedBox(width: 400,
             child: TextField(
-                  decoration: InputDecoration(
+              controller: username,
+                decoration: InputDecoration(
                     border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(10.0)
                     ),
@@ -28,6 +32,7 @@ class Log extends StatelessWidget {
             ),),SizedBox(
               width: 400,
             child: TextField(
+              controller: password,
               decoration: InputDecoration(
                 border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(10.0)
@@ -37,8 +42,15 @@ class Log extends StatelessWidget {
               ),
             ),),
             SizedBox(height: 50
-              ,), TextButton(onPressed:(){
-              Navigator.push(context, MaterialPageRoute(builder: (context) => Pro(),),);
+              ,), TextButton(onPressed:() async {
+                try{
+                     await FirebaseAuth.instance.signInWithEmailAndPassword(email: username.text , password: password.text);
+                     Navigator.push(context, MaterialPageRoute(builder: (context) => Pro(),),);}
+    on FirebaseAuthException
+    catch(e){
+                  ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(e.code)));
+
+                }
             },
               style: TextButton.styleFrom(
                 backgroundColor: Colors.blue,
@@ -55,3 +67,5 @@ class Log extends StatelessWidget {
     );
   }
 }
+
+

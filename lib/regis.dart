@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 import 'log.dart';
@@ -5,7 +6,12 @@ import 'log.dart';
 class Register extends StatelessWidget {
    Register({super.key});
 
-  @override
+   final usernameController = TextEditingController();
+   final email=TextEditingController();
+   final password = TextEditingController();
+   final conpswrd = TextEditingController();
+
+   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
@@ -23,6 +29,7 @@ class Register extends StatelessWidget {
             SizedBox(
               width: 400,
               child: TextField(
+                controller: usernameController,
                 decoration: InputDecoration(
                   border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(10.0)
@@ -38,6 +45,7 @@ class Register extends StatelessWidget {
             SizedBox(
               width: 400,
               child: TextField(
+                controller:email,
                 decoration: InputDecoration(
                   border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(10.0)
@@ -53,6 +61,7 @@ class Register extends StatelessWidget {
             SizedBox(
               width: 400,
               child: TextField(
+                controller: password,
                 decoration: InputDecoration(
                   border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(10.0)
@@ -68,6 +77,7 @@ class Register extends StatelessWidget {
             SizedBox(
               width: 400,
               child: TextField(
+                controller:conpswrd,
                 decoration: InputDecoration(
                   border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(10.0)
@@ -81,6 +91,14 @@ class Register extends StatelessWidget {
               height: 25,
             ),
             TextButton(onPressed:(){
+
+                try {
+                  FirebaseAuth.instance.createUserWithEmailAndPassword(email: email.text, password: password.text);}
+               on FirebaseAuthException catch (e) {
+                  ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(e.code)));
+                }
+
+             // print('hai');
               Navigator.push(context, MaterialPageRoute(builder: (context) => Log(),),);
             },
               style: TextButton.styleFrom(
